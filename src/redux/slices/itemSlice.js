@@ -3,16 +3,16 @@ import axios from "axios";
 
 
 export const fetchItems = createAsyncThunk('', async (params) => {
-	const { page, setPage, setFetching } = params;
+	const { limit, setLimit, setFetching } = params;
 	try {
-		const { data } = await axios.get(`http://localhost:3000/items?_limit=5&_page=${page}`);
+		const { data } = await axios.get(`http://localhost:3000/items?_limit=${limit}`);
 		return data;
 	} catch (e) {
 		console.log(e);
 	}
 	finally {
 		setFetching(false);
-		setPage(prevState => prevState + 1)
+		setLimit(prevState => prevState + 5)
 	}
 }
 );

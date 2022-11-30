@@ -6,17 +6,18 @@ import { ThreeDots } from 'react-loader-spinner'
 
 
 function TableWithApi() {
-	const [page, setPage] = useState(1);
+	const [limit, setLimit] = useState(5);
 	const [fetching, setFetching] = useState(true);
 	const dispatch = useDispatch();
 	const items = useSelector(state => state.itemSlice.items);
 	const status = useSelector(state => state.itemSlice.status);
 
 
+
 	async function fetchData() {
 		dispatch(fetchItems({
-			page,
-			setPage,
+			limit,
+			setLimit,
 			setFetching,
 		}));
 	}
@@ -42,7 +43,7 @@ function TableWithApi() {
 			<table class="iksweb">
 				<tbody>
 					<tr>
-						<td><b>Name</b></td>
+						<td><b>First Name</b></td>
 						<td><b>Last Name</b></td>
 						<td><b>Email</b></td>
 						<td><b>Age</b></td>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { addItem, createItem } from '../redux/slices/itemSlice';
+import { createItem } from '../redux/slices/itemSlice';
+import axios from 'axios';
 
 function FormValid(props) {
 	const { register, formState: { errors, isValid }, handleSubmit, reset, } = useForm({
@@ -11,7 +12,25 @@ function FormValid(props) {
 	const dispatch = useDispatch();
 	const onSubmit = (data) => {
 		dispatch(createItem(data));
+		fetchPost(data);
 		reset();
+	}
+
+	const fetchPost = (data) => {
+		axios.post('http://localhost:3000/items', {
+			id: Math.random(1, 1000),
+			firstName: data.firstName,
+			lastName: data.lastName,
+			email: data.email,
+			age: data.age,
+			developer: data.developer
+		})
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error.response.data);
+			});
 	}
 	return (
 		<div>
