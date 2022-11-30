@@ -1,16 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { addItem } from '../redux/slices/itemSlice';
+import { addItem, createItem } from '../redux/slices/itemSlice';
 
 function FormValid(props) {
 	const { register, formState: { errors, isValid }, handleSubmit, reset, } = useForm({
 		mode: "all"
 	});
+
 	const dispatch = useDispatch();
 	const onSubmit = (data) => {
-		dispatch(addItem(data));
-		console.log(data)
+		dispatch(createItem(data));
 		reset();
 	}
 	return (

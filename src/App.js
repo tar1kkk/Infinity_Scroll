@@ -2,13 +2,15 @@
 import './App.css';
 import FormValid from './comp/FormValid';
 import Table from './comp/Table';
+import TableWithApi from './comp/TableWithApi';
 
 
-function App({ data, rowHeight, visibleRows }) {
+function App() {
   return (
     <div>
-      <Table data={data} rowHeight={rowHeight} visibleRows={visibleRows} />
+      {/* <Table data={data} rowHeight={rowHeight} visibleRows={visibleRows} /> */}
       <FormValid />
+      <TableWithApi />
     </div>
   )
 
